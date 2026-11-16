@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Evghenii, tunsori bărbătești în Chișinău",
+    "description": "Tunsori, fade, barbă, tonare și diagnoza scalpului. Programare online la Evghenii, str. Miron Costin 17/7, Chișinău.",
+    "workTitle": "Lucrări",
+    "blogTitle": "Blog",
+    "bookTitle": "Programare online",
+    "bookingTitle": "Programarea ta"
+  },
+  "nav": {
+    "book": "Programează-te",
+    "menu": "Meniu",
+    "close": "Închide",
+    "home": "Acasă",
+    "language": "Limba",
+    "skip": "Sari la conținut"
+  },
+  "hero": {
+    "title": "Tunsoarea potrivită feței tale",
+    "lead": "Tunsoare, barbă și aranjare, alese după forma feței și tipul tău de păr. Studio pe Miron Costin 17/7, Chișinău.",
+    "secondary": "Vezi lucrările",
+    "videoLabel": "Lucrare recentă din studio"
+  },
+  "next": {
+    "title": "Următorul loc liber",
+    "today": "azi",
+    "tomorrow": "mâine",
+    "at": "{day}, ora {time}",
+    "none": "Zilele următoare sunt ocupate",
+    "cta": "Rezervă ora",
+    "loading": "Se caută o oră liberă"
+  },
+  "work": {
+    "title": "Lucrări recente",
+    "lead": "Tunsori și explicații filmate de Evghenii. Apasă pe oricare ca să-l vezi cu sunet.",
+    "all": "Toate lucrările",
+    "play": "Redă video: {title}",
+    "open": "Deschide foto: {title}",
+    "prev": "Înapoi",
+    "next": "Înainte",
+    "pageTitle": "Lucrări",
+    "pageLead": "Tunsori, barbă și explicații despre cum se alege o tunsoare. Apasă ca să vezi cu sunet.",
+    "count": "{n} video",
+    "filterAll": "Toate",
+    "filterVideo": "Video",
+    "filterPhoto": "Foto",
+    "empty": "Încă nu sunt lucrări publicate."
+  },
+  "viewer": {
+    "close": "Închide",
+    "soundOn": "Pornește sunetul",
+    "soundOff": "Oprește sunetul",
+    "play": "Redă",
+    "pause": "Pauză",
+    "next": "Următorul video",
+    "prev": "Video anterior",
+    "instagram": "Vezi pe Instagram",
+    "book": "Vreau la fel",
+    "counter": "{n} din {total}"
+  },
+  "about": {
+    "title": "Cum lucrează Evghenii",
+    "lead": "Meșter frizer în Chișinău. Tot ce scrie mai jos e spus de el, în video-urile lui.",
+    "watch": "Vezi video"
+  },
+  "services": {
+    "title": "Servicii și prețuri",
+    "lead": "Alege serviciul și vezi imediat orele libere.",
+    "groups": {
+      "hair": "Tunsoare",
+      "beard": "Barbă",
+      "color": "Culoare"
+    },
+    "minutes": "{n} min",
+    "choose": "Programează: {name}",
+    "note": "Prețuri în lei moldovenești. Durata este orientativă."
+  },
+  "scalp": {
+    "title": "Diagnoza scalpului",
+    "body": "Cu o cameră specială, scalpul și firele de păr se văd mărite pe ecranul telefonului. În video e tot procesul.",
+    "videoLabel": "Video: diagnoza scalpului"
+  },
+  "blog": {
+    "title": "Din blog",
+    "lead": "Ce explică Evghenii în video-urile lui, pe scurt și în scris.",
+    "pageTitle": "Blog",
+    "read": "Citește",
+    "all": "Toate articolele",
+    "minRead": "{n} min de citit",
+    "back": "Înapoi la blog",
+    "video": "Cu video",
+    "watch": "Vezi video",
+    "empty": "Încă nu sunt articole.",
+    "more": "Mai multe articole",
+    "ctaTitle": "Vorbim despre părul tău?",
+    "ctaBody": "Alege o oră liberă și vedem ce ți se potrivește."
+  },
+  "studio": {
+    "title": "Studioul",
+    "body": "Aici se fac tunsorile și tot aici se filmează video-urile de pe Instagram.",
+    "hours": "Program",
+    "closed": "Închis",
+    "weekdays": [
+      "Luni",
+      "Marți",
+      "Miercuri",
+      "Joi",
+      "Vineri",
+      "Sâmbătă",
+      "Duminică"
+    ],
+    "weekdaysShort": [
+      "Lu",
+      "Ma",
+      "Mi",
+      "Jo",
+      "Vi",
+      "Sâ",
+      "Du"
+    ],
+    "address": "Adresa",
+    "maps": "Deschide harta",
+    "phone": "Telefon",
+    "social": "Social",
+    "openNow": "Deschis acum",
+    "closedNow": "Închis acum",
+    "closesAt": "până la {time}",
+    "opensAt": "deschide {day} la {time}",
+    "today": "azi",
+    "tomorrow": "mâine"
+  },
+  "cta": {
+    "title": "Alege o oră",
+    "body": "Programarea durează sub un minut. Confirmarea apare imediat."
+  },
+  "footer": {
+    "rights": "© Evghenii. Toate drepturile rezervate.",
+    "admin": "Cont",
+    "top": "Sus"
+  },
+  "notFound": {
+    "title": "Pagina nu există",
+    "body": "Linkul e greșit sau pagina a fost mutată.",
+    "back": "Înapoi acasă"
+  },
+  "language": {
+    "ro": "Română",
+    "ru": "Русский"
+  }
+}

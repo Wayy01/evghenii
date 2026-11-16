@@ -1,0 +1,325 @@
+@import "tailwindcss";
+
+/*
+  Concrete + cobalt. The neutrals come from the studio's plaster walls and black
+  chairs; cobalt is the single accent and is reserved for actions and live state.
+  Tokens are semantic and swap with the system colour scheme, so components never
+  name a raw colour.
+*/
+:root {
+  color-scheme: light dark;
+
+  --bg: #eeeeeb;
+  --surface: #f8f8f6;
+  --sunken: #e3e3df;
+  --fg: #111214;
+  --muted: #55575c;
+  --faint: #7b7d83;
+  --line: rgb(17 18 20 / 0.12);
+  --line-strong: rgb(17 18 20 / 0.26);
+  --accent: #1f3fff;
+  --accent-hover: #1631d6;
+  --accent-text: #1f3fff;
+  --accent-soft: rgb(31 63 255 / 0.1);
+  --on-accent: #ffffff;
+  --inverse: #111214;
+  --on-inverse: #eeeeeb;
+  --on-inverse-muted: #a3a5aa;
+  --ok: #1c7548;
+  --ok-soft: rgb(28 117 72 / 0.12);
+  --warn: #99600a;
+  --warn-soft: rgb(153 96 10 / 0.13);
+  --danger: #c22f28;
+  --danger-soft: rgb(194 47 40 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0f11;
+    --surface: #17181b;
+    --sunken: #090a0b;
+    --fg: #ececea;
+    --muted: #a3a5aa;
+    --faint: #777980;
+    --line: rgb(255 255 255 / 0.1);
+    --line-strong: rgb(255 255 255 / 0.22);
+    --accent: #4360ff;
+    --accent-hover: #5a74ff;
+    --accent-text: #93a4ff;
+    --accent-soft: rgb(67 96 255 / 0.18);
+    --on-accent: #ffffff;
+    --inverse: #ececea;
+    --on-inverse: #111214;
+    --on-inverse-muted: #55575c;
+    --ok: #5fc28f;
+    --ok-soft: rgb(95 194 143 / 0.14);
+    --warn: #e6b450;
+    --warn-soft: rgb(230 180 80 / 0.14);
+    --danger: #f0605d;
+    --danger-soft: rgb(240 96 93 / 0.14);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-inverse: var(--inverse);
+  --color-on-inverse: var(--on-inverse);
+  --color-on-inverse-muted: var(--on-inverse-muted);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  /* Footage is always framed in the dark, whatever the page theme. */
+  --color-night: #0b0c0e;
+  --color-on-night: #f1f1ee;
+  --color-on-night-muted: rgb(241 241 238 / 0.68);
+
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sofia), "Arial Narrow", ui-sans-serif, sans-serif;
+
+  /* Shape rule: controls are pills, media frames and panels 14px, inputs 10px. */
+  --radius-frame: 14px;
+  --radius-field: 10px;
+  --radius-sheet: 22px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Layers: content < sticky chrome < sheets and menus < reel viewer < toasts */
+  --z-chrome: 40;
+  --z-sheet: 60;
+  --z-viewer: 80;
+  --z-toast: 90;
+
+  --container-page: 1360px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* In the base layer so a control can replace the ring with its own focus style. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+button,
+[role="button"],
+summary,
+label[for] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Tap targets respond instantly on phones instead of waiting for double-tap detection. */
+a,
+button,
+input,
+select,
+textarea,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer components {
+  /*
+    Display type: heavy condensed caps. Uppercase Romanian and Cyrillic carry
+    marks above the cap height (Ș, Ă, Й), so the line box keeps a little air.
+  */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    /* Not tighter: Ț and Ș hang a comma below the baseline that must clear the next line. */
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+
+  .page {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: 1.125rem;
+  }
+  @media (min-width: 768px) {
+    .page {
+      padding-inline: 2.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .page {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  /* Small caps label used for metadata (durations, dates, table heads). */
+  .label {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Lining figures only: Onest's tabular 1 sits in a wide box and reads as "1 0:30" in times. */
+  .tnum {
+    font-variant-numeric: lining-nums;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .prose-post {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--fg);
+  }
+  .prose-post > * + * {
+    margin-top: 1.25em;
+  }
+  .prose-post h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 2rem;
+    line-height: 1;
+    margin-top: 2.25em;
+  }
+  .prose-post ul {
+    display: grid;
+    gap: 0.6em;
+    padding-left: 0;
+    list-style: none;
+  }
+  .prose-post li {
+    position: relative;
+    padding-left: 1.5em;
+  }
+  .prose-post li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.75em;
+    height: 2px;
+    background: var(--accent);
+  }
+  .prose-post a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-post strong {
+    font-weight: 650;
+  }
+}
+
+/*
+  Scroll reveals start hidden only when JS is running and motion is welcome,
+  so the page is complete without either.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes pulse-live {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.skeleton {
+  border-radius: var(--radius-field);
+  background: linear-gradient(90deg, var(--sunken) 25%, var(--surface) 50%, var(--sunken) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.4s linear infinite;
+}
+
+/* SplitText line masks clip at the line box; give accents and descenders room. */
+.split-line-mask {
+  padding-block: 0.16em;
+  /* One-sided, because vertical margins between sibling lines would collapse. */
+  margin-top: -0.32em;
+}
+.split-line-mask:first-child {
+  margin-top: -0.16em;
+}
+.split-line-mask:last-child {
+  margin-bottom: -0.16em;
+}
+
+/* A fixed phone action bar must never sit on top of the footer's last line. */
+@media (max-width: 1023.98px) {
+  body:has([data-bottom-bar]) > footer {
+    padding-bottom: 7rem;
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "title": "Calendar",
+  "today": "Azi",
+  "prevDay": "Ziua anterioară",
+  "nextDay": "Ziua următoare",
+  "prevWeek": "Săptămâna anterioară",
+  "nextWeek": "Săptămâna următoare",
+  "new": "Programare",
+  "newLong": "Programare nouă",
+  "views": {
+    "day": "Zi",
+    "week": "Săptămână"
+  },
+  "viewsShort": {
+    "day": "Zi",
+    "week": "Săpt."
+  },
+  "view": "Vizualizare",
+  "jump": "Alege data",
+  "summary": {
+    "bookings": "Programări: {n}",
+    "expected": "estimat {sum}",
+    "none": "Nicio programare în perioada aceasta"
+  },
+  "cancelled": "Anulate: {n}",
+  "grid": {
+    "closed": "Închis",
+    "timeOff": "Indisponibil",
+    "now": "Acum",
+    "count": "{n} prog.",
+    "dayLabel": "{day}, programări: {n}",
+    "emptyTitle": "Zi liberă deocamdată",
+    "emptyBody": "Apasă pe o oră din grilă ca să adaugi o programare.",
+    "closedTitle": "Zi închisă",
+    "closedBody": "După program e zi liberă. Poți adăuga totuși o programare."
+  },
+  "details": {
+    "title": "Programare",
+    "call": "Sună",
+    "profile": "Fișa clientului",
+    "service": "Serviciu",
+    "when": "Data și ora",
+    "duration": "Durată",
+    "price": "Preț",
+    "comment": "Comentariu",
+    "source": {
+      "online": "Rezervată online",
+      "manual": "Adăugată manual"
+    },
+    "reschedule": "Mută programarea",
+    "saveTime": "Salvează ora",
+    "save": "Salvează",
+    "complete": "Finalizată",
+    "noShow": "Neprezentare",
+    "cancel": "Anulează",
+    "cancelConfirm": "Sigur anulezi programarea?",
+    "cancelYes": "Da, anulează",
+    "cancelNo": "Nu, o păstrez",
+    "restore": "Restabilește"
+  },
+  "create": {
+    "title": "Programare nouă",
+    "client": "Client",
+    "search": "Caută după nume sau telefon",
+    "searching": "Se caută",
+    "noResults": "Niciun client găsit",
+    "newClient": "Client nou",
+    "existing": "Caută un client existent",
+    "change": "Schimbă",
+    "pickClient": "Alege un client sau adaugă unul nou.",
+    "name": "Nume",
+    "phone": "Telefon",
+    "service": "Serviciu",
+    "date": "Data",
+    "time": "Ora",
+    "slots": "Ore libere",
+    "loadingSlots": "Se caută ore libere",
+    "noSlots": "Nicio oră liberă în ziua aceasta.",
+    "closedDay": "Zi închisă după program. Poți alege ora manual.",
+    "otherTime": "Ora aleasă",
+    "taken": "Ora aceasta nu e printre cele libere: e ocupată sau în afara programului.",
+    "price": "Preț",
+    "comment": "Comentariu",
+    "optional": "opțional",
+    "submit": "Adaugă programarea",
+    "submitting": "Se adaugă"
+  },
+  "toast": {
+    "moved": "Mutată la {when}",
+    "resized": "Durata: {n} min",
+    "undo": "Revino",
+    "created": "Programare adăugată, {when}",
+    "saved": "Salvat",
+    "statusSet": "Stare: {status}",
+    "conflict": "Se suprapune cu altă programare. Nu am salvat.",
+    "error": "Nu s-a salvat. Încearcă din nou.",
+    "invalidPhone": "Verifică numărul de telefon.",
+    "invalidName": "Scrie numele clientului.",
+    "loadError": "Nu am putut încărca programările. Verifică internetul și reîncarcă pagina."
+  },
+  "units": {
+    "min": "{n} min"
+  }
+}
