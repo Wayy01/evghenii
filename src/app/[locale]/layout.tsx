@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { Onest, Sofia_Sans_Extra_Condensed } from "next/font/google";
 import { hasLocale, locales } from "@/i18n/config";
 import { getSiteDict } from "@/i18n/dictionaries";
@@ -21,6 +23,10 @@ const sofia = Sofia_Sans_Extra_Condensed({
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
+
+// Pages read the database, which only the running app can reach, so they render on request
+// and are allowed to block on it rather than stream from a prerendered placeholder.
+export const instant = false;
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
@@ -49,6 +55,13 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+// The metadata above reads the owner's text edits from the database at request time. On a
+// page that is otherwise static (the admin login), Next needs this marker to accept that.
+async function RequestTime() {
+  await connection();
+  return null;
+}
+
 export default async function RootLayout({ children, params }: LayoutProps<"/[locale]">) {
   const { locale } = await params;
   if (!hasLocale(locale)) notFound();
@@ -59,7 +72,12 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
         {/* Flags JS before first paint so scroll reveals can start hidden without a flash. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
-      <body className="min-h-dvh bg-bg font-sans text-fg antialiased">{children}</body>
+      <body className="min-h-dvh bg-bg font-sans text-fg antialiased">
+        {children}
+        <Suspense>
+          <RequestTime />
+        </Suspense>
+      </body>
     </html>
   );
 }

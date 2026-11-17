@@ -7,7 +7,7 @@ import { defaultHome, type HomeConfig } from "../src/lib/site-config";
 
 const poster = (code: string) => `/media/reels/${code}.jpg`;
 
-export async function seedSite(sql: postgres.Sql) {
+export async function seedSite(sql: postgres.ISql) {
   const media = await sql<{ id: number; src: string; sort_order: number }[]>`
     select id, src, sort_order from media order by taken_at desc`;
   const idByCode = new Map(media.map((m) => [m.src.split("/").pop()!.replace(/\.\w+$/, ""), m.id]));

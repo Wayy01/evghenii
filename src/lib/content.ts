@@ -1,5 +1,6 @@
 import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
+import { connection } from "next/server";
 import { and, asc, desc, eq } from "drizzle-orm";
 import { db, schema } from "@/db";
 import type { Locale } from "@/i18n/config";
@@ -16,7 +17,15 @@ export const contentTags = {
   config: "config",
 } as const;
 
+// The database is reachable only from the running app, never from the build, so each
+// loader waits for a real request before reading. Results stay cached across requests.
+
 export async function getActiveServices() {
+  await connection();
+  return activeServices();
+}
+
+async function activeServices() {
   "use cache";
   cacheTag(contentTags.services);
   cacheLife("hours");
@@ -28,6 +37,11 @@ export async function getActiveServices() {
 }
 
 export async function getPublishedMedia() {
+  await connection();
+  return publishedMedia();
+}
+
+async function publishedMedia() {
   "use cache";
   cacheTag(contentTags.media);
   cacheLife("hours");
@@ -39,6 +53,11 @@ export async function getPublishedMedia() {
 }
 
 export async function getPublishedPosts() {
+  await connection();
+  return publishedPosts();
+}
+
+async function publishedPosts() {
   "use cache";
   cacheTag(contentTags.posts);
   cacheLife("hours");
@@ -50,6 +69,11 @@ export async function getPublishedPosts() {
 }
 
 export async function getPublishedPost(slug: string) {
+  await connection();
+  return publishedPost(slug);
+}
+
+async function publishedPost(slug: string) {
   "use cache";
   cacheTag(contentTags.posts, contentTags.media);
   cacheLife("hours");
@@ -63,6 +87,11 @@ export async function getPublishedPost(slug: string) {
 }
 
 export async function getWorkingHours() {
+  await connection();
+  return workingHours();
+}
+
+async function workingHours() {
   "use cache";
   cacheTag(contentTags.hours);
   cacheLife("hours");
@@ -71,6 +100,11 @@ export async function getWorkingHours() {
 
 /** The owner's edits to the site copy for one locale, as `dictionary path -> text`. */
 export async function getTextOverrides(locale: Locale): Promise<Record<string, string>> {
+  await connection();
+  return textOverrides(locale);
+}
+
+async function textOverrides(locale: Locale): Promise<Record<string, string>> {
   "use cache";
   cacheTag(contentTags.texts);
   cacheLife("hours");
@@ -83,6 +117,11 @@ export async function getTextOverrides(locale: Locale): Promise<Record<string, s
 
 /** One settings document (contact, nav or home), validated, with defaults for anything unset. */
 export async function getSiteConfig<K extends ConfigKey>(key: K): Promise<ConfigValue<K>> {
+  await connection();
+  return siteConfig(key);
+}
+
+async function siteConfig<K extends ConfigKey>(key: K): Promise<ConfigValue<K>> {
   "use cache";
   cacheTag(contentTags.config);
   cacheLife("hours");

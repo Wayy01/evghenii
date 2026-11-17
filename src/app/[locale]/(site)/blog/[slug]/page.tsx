@@ -15,19 +15,6 @@ import { Prose } from "@/components/site/blog/prose";
 import { BookPrompt } from "@/components/site/work/book-prompt";
 import { cn } from "@/lib/cn";
 
-// A slug outside generateStaticParams (a post published after the last build) renders on
-// its first request. That one navigation may block instead of streaming a placeholder, so a
-// mistyped address still answers with a real 404 status rather than a 200 shell.
-export const instant = false;
-
-// Known posts are prerendered; a post published later still renders on its first
-// request, because unlisted slugs fall through to runtime and the loaders are cached by slug.
-export async function generateStaticParams() {
-  const posts = await getPublishedPosts();
-  // Cache Components needs at least one param to validate the route's static shell.
-  return posts.length ? posts.map((p) => ({ slug: p.slug })) : [{ slug: "_" }];
-}
-
 export async function generateMetadata({ params }: PageProps<"/[locale]/blog/[slug]">): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!hasLocale(locale)) return {};
